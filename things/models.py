@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Model
+from django.core.validators import MinValueValidator,MaxValueValidator
 
 # Create your models here.
-class Things(Model):
+class Things(models.Model):
      name = models.CharField(
           unique=True,
           blank=False,
@@ -16,6 +16,6 @@ class Things(Model):
      )
      quantity = models.IntegerField(
           unique=False,
-          max_length=100,
-
+          validators=[MinValueValidator(0),MaxValueValidator(100)]
      )
+
